@@ -53,28 +53,13 @@ release = version
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    # "sphinx_toolbox.more_autodoc.typehints",
-    # "sphinx_toolbox.more_autodoc.typevars",
-    # "sphinx_toolbox.more_autodoc.genericalias",
     # Sphinx builtin extensions
-    # "sphinx.ext.autodoc",
-    # "sphinx.ext.autosectionlabel",
-    # "sphinx.ext.autosummary",
-    # "sphinx.ext.coverage",
-    # "sphinx.ext.doctest",
-    # "sphinx.ext.duration",
-    # "sphinx.ext.intersphinx",
-    # "sphinx.ext.mathjax",
-    # "sphinx.ext.napoleon",
-    # "sphinx.ext.todo",
-    # "sphinx.ext.viewcode",
-    # # 1st party extensions
-    # "signatures",
-    # # 3rd party extensions
-    "autoapi.extension",
-    # "sphinx_copybutton",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.mathjax",
+    # 3rd party extensions
+    # "autoapi.extension",
     "sphinx_math_dollar",
-    # "sphinx_autodoc_typehints",
 ]
 # Add any Sphinx extension module names here, as strings. They can be extensions coming with Sphinx
 # (named 'sphinx.ext.*') or your custom ones.
@@ -84,7 +69,7 @@ root_doc = "index"
 # The document name of the “root” document, that is, the document that contains the root toctree directive.
 # Default is 'index'.
 
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "_**"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # A list of glob-style patterns that should be excluded when looking for source files. They are matched against the
 # source file names relative to the source directory, using slashes as directory separators on all platforms.
 
@@ -160,6 +145,7 @@ python_use_unqualified_type_names = True
 
 # endregion General Configuration -------------------------------------------------------------------------------------
 
+
 # region HTML Configuration ------------------------------------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
@@ -222,6 +208,187 @@ html_sidebars = {}
 # TODO: Add missing configuration options.
 
 # endregion HTML Configuration ---------------------------------------------------------------------------------
+
+
+# region sphinx.ext.autodoc configuration -----------------------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#directive-autoclass
+
+autoclass_content = "both"
+# This value selects what content will be inserted into the main body of an autoclass directive.
+# The possible values are: (default="class")
+# "class"
+# Only the class’ docstring is inserted. This is the default.
+# You can still document __init__ as a separate method using automethod or the members option to autoclass.
+# "both"
+# Both the class’ and the __init__ method’s docstring are concatenated and inserted.
+# "init"
+# Only the __init__ method’s docstring is inserted.
+# If the class has no __init__ method or if the __init__ method’s docstring is empty,
+# but the class has a __new__ method’s docstring, it is used instead.
+
+autodoc_class_signature = "mixed"
+# This value selects how the signature will be displayed for the class defined by autoclass directive.
+# The possible values are: (default="mixed")
+# "mixed"
+# Display the signature with the class name.
+# "separated"
+# Display the signature as a method.
+
+autodoc_member_order = "groupwise"
+# This value selects if automatically documented members are sorted alphabetical (value 'alphabetical'),
+# by member type (value 'groupwise') or by source order (value 'bysource'). The default is alphabetical.
+# Note that for source order, the module must be a Python module with the source code available.
+
+autodoc_default_flags = []
+# This value is a list of autodoc directive flags that should be automatically applied to all autodoc directives.
+# The supported flags are 'members', 'undoc-members', 'private-members', 'special-members', 'inherited-members',
+# 'show-inheritance', 'ignore-module-all' and 'exclude-members'.
+# autodoc_default_options = {}
+# The default options for autodoc directives. They are applied to all autodoc directives automatically.
+# It must be a dictionary which maps option names to the values. For example:
+#
+# autodoc_default_options = {
+#     # 'members': 'var1, var2',
+#     # 'member-order': 'groupwise',
+#     # 'special-members': '__init__',
+#     "undoc-members": False,
+#     "imported-members": False,
+#     # 'exclude-members': '__weakref__'
+# }
+# Setting None or True to the value is equivalent to giving only the option name to the directives.
+# The supported options are 'members', 'member-order', 'undoc-members', 'private-members', 'special-members',
+# 'inherited-members', 'show-inheritance', 'ignore-module-all', 'imported-members', 'exclude-members' and
+# 'class-doc-from'.
+
+autodoc_docstring_signature = True
+# Functions imported from C modules cannot be introspected, and therefore the signature for such functions cannot be
+# automatically determined. However, it is an often-used convention to put the signature into the first line of the
+# function’s docstring.
+# If this boolean value is set to True (which is the default), autodoc will look at the first line of the docstring for
+# functions and methods, and if it looks like a signature, use the line as the signature and remove it from the
+# docstring content.
+# autodoc will continue to look for multiple signature lines, stopping at the first line that does not look like a
+# signature. This is useful for declaring overloaded function signatures.
+
+autodoc_mock_imports = []
+# This value contains a list of modules to be mocked up.
+# This is useful when some external dependencies are not met at build time and break the building process.
+# You may only specify the root package of the dependencies themselves and omit the submodules:
+
+autodoc_typehints = "both"
+# This value controls how to represent typehints. The setting takes the following values:
+# 'signature' – Show typehints in the signature (default)
+# 'description' – Show typehints as content of the function or method The typehints of overloaded
+#                 functions or methods will still be represented in the signature.
+# 'none' – Do not show typehints
+# 'both' – Show typehints in the signature and as content of the function or method
+# Overloaded functions or methods will not have typehints included in the description
+# because it is impossible to accurately represent all possible overloads as a list of parameters.
+
+autodoc_typehints_description_target = "documented"
+# This value controls whether the types of undocumented parameters and return values are
+# documented when autodoc_typehints is set to description. The default value is "all", meaning that
+# the types are documented for all parameters and return values, whether they are documented or not.
+# When set to "documented", types will only be documented for a parameter or a return value that is
+# already documented by the docstring.
+
+autodoc_type_aliases = {
+    # # tsdm.utils.strings.AliasType : '~tsdm.utils.strings.AliasType',
+    # "AliasType": "~tsdm.utils.strings.AliasType",
+    # "Path": "pathlib.Path",
+    # # torch
+    # "Tensor": "~torch.Tensor",
+    # "nn.Module": "~torch.nn.Module",
+    # "SummaryWriter": "~torch.utils.tensorboard.writer.SummaryWriter",
+    # # numpy
+    # "ArrayLike": "~numpy.typing.ArrayLike",
+    # "datetime64": "~numpy.datetime64",
+    # "timedelta64": "~numpy.timedelta64",
+    # "integer": "~numpy.integer",
+    # "floating": "~numpy.floating",
+    # # pandas
+    # "NA": "~pandas.NA",
+    # "NaT": "~pandas.NaT",
+    # "DataFrame": "~pandas.DataFrame",
+    # "Series": "`~pandas.Series`",
+    # "Index": "~pandas.Index",
+    # "MultiIndex": "~pandas.MultiIndex",
+    # "CategoricalIndex": "~pandas.CategoricalIndex",
+    # "TimedeltaIndex": "~pandas.TimedeltaIndex",
+    # "DatetimeIndex": "~pandas.DatetimeIndex",
+    # "Categorical": "~pandas.Categorical",
+    # "get_dummies": "~pandas.get_dummies",
+    # # xarray
+    # "DataArray": "~xarray.DataArray",
+    # "Dataset": "~xarray.Dataset",
+    # "Variable": "~xarray.Variable",
+}
+# A dictionary for users defined type aliases that maps a type name to the full-qualified object name.
+# It is used to keep type aliases not evaluated in the document. Defaults to empty ({}).
+# The type aliases are only available if your program enables Postponed Evaluation of Annotations (PEP 563)
+# feature via from __future__ import annotations.
+# autodoc_type_aliases |= tsdm.util.system.get_napoleon_type_aliases(typing)
+# # recursively napoleon_type_aliases for tsdm classes / functions.
+# autodoc_type_aliases |= tsdm.util.system.get_napoleon_type_aliases(abc)
+# # recursively napoleon_type_aliases for tsdm classes / functions.
+# autodoc_type_aliases |= tsdm.util.system.get_napoleon_type_aliases(torch)
+# autodoc_type_aliases |= tsdm.util.system.get_napoleon_type_aliases(torch.utils)
+# autodoc_type_aliases |= tsdm.util.system.get_napoleon_type_aliases(tsdm)
+# # recursively napoleon_type_aliases for tsdm classes / functions.
+
+autodoc_typehints_format = "short"
+# This value controls the format of typehints. The setting takes the following values:
+# 'fully-qualified' – Show the module name and its name of typehints
+# 'short' – Suppress the leading module names of the typehints (ex. io.StringIO -> StringIO)
+
+autodoc_preserve_defaults = True
+# If True, the default argument values of functions will be not evaluated on generating document.
+# It preserves them as is in the source code.
+
+autodoc_warningiserror = True
+# This value controls the behavior of sphinx-build -W during importing modules. If False is given,
+# autodoc forcedly suppresses the error if the imported module emits warnings. By default, True.
+
+autodoc_inherit_docstrings = True
+# This value controls the docstrings inheritance. If set to True the docstring for classes or methods,
+# if not explicitly set, is inherited from parents. The default is True.
+
+# endregion sphinx.ext.autodoc configuration --------------------------------------------------------------------------
+
+
+# region sphinx.ext.autosummary configuration -------------------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/autosummary.html
+
+autosummary_context = {}
+# A dictionary of values to pass into the template engine’s context for autosummary stubs files.
+
+autosummary_generate = True
+# Boolean indicating whether to scan all found documents for autosummary directives,
+# and to generate stub pages for each. It is enabled by default.
+
+autosummary_generate_overwrite = True
+# If true, autosummary overwrites existing files by generated stub pages. Defaults to true (enabled).
+
+autosummary_mock_imports = []
+# This value contains a list of modules to be mocked up. See autodoc_mock_imports for more details.
+# It defaults to autodoc_mock_imports.
+
+autosummary_imported_members = False
+# A boolean flag indicating whether to document classes and functions imported in modules. Default is False
+
+autosummary_ignore_module_all = False
+# If False and a module has the __all__ attribute set,
+# autosummary documents every member listed in __all__ and no others.
+# Note that if an imported member is listed in __all__, it will be documented regardless of the value of
+# autosummary_imported_members. To match the behaviour of from module import *, set autosummary_ignore_module_all to
+# False and autosummary_imported_members to True.
+# Default is True
+
+autosummary_filename_map = {}
+# A dict mapping object names to filenames. This is necessary to avoid filename conflicts where multiple objects
+# have names that are indistinguishable when case is ignored, on file systems where filenames are case-insensitive.
+
+# endregion sphinx.ext.autosummary configuration ----------------------------------------------------------------------
 
 
 # region sphinx-autoapi configuration ---------------------------------------------------------------------------------
@@ -310,6 +477,42 @@ autoapi_keep_files = True
 # Default: False
 
 # endregion sphinx-autoapi configuration ------------------------------------------------------------------------------
+
+
+# region sphinx.ext.mathjax configuration -----------------------------------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/math.html#module-sphinx.ext.mathjax
+
+# mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+# The path to the JavaScript file to include in the HTML files in order to load MathJax.
+# The default is the https:// URL that loads the JS files from the jsdelivr Content Delivery Network.
+# See the MathJax Getting Started page for details. If you want MathJax to be available offline or without including
+# resources from a third-party site, you have to download it and set this value to a different path.
+
+mathjax_options = {}
+# The options to script tag for mathjax.
+# The default is empty {}.
+
+mathjax3_config = {
+  "tex": {
+    "inlineMath": [['\\(', '\\)']],
+    "displayMath": [["\\[", "\\]"]],
+  }
+}
+# The configuration options for MathJax v3 (which is used by default).
+
+mathjax2_config = {}
+# The configuration options for MathJax v2
+# The default is empty {}.
+
+mathjax_config = {
+    'tex2jax': {
+        'inlineMath': [ ["\\(","\\)"] ],
+        'displayMath': [["\\[","\\]"] ],
+    },
+}
+# Former name of mathjax2_config.
+
+# endregion sphinx.ext.mathjax configuration --------------------------------------------------------------------------
 
 
 # region sphinx_math_dollar configuration ------------------------------------------------------------------------------

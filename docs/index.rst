@@ -1,11 +1,10 @@
 Sphinx-Demo
-==========
+===========
 
 .. toctree::
-   :titlesonly:
-   :maxdepth: 2
 
-   autoapi/sphinx_demo/index.rst
+   usage
+   API reference <_autosummary/sphinx_demo>
 
 
 Indices and tables

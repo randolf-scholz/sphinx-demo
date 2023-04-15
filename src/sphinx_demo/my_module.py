@@ -1,9 +1,9 @@
 """Example Module."""
 
-__all__ = ["MyClass"]
+__all__ = ["MY_CONST", "MyClass", "my_func"]
 
 
-CONST: int = 42
+MY_CONST: int = 42
 """Example constant."""
 
 
@@ -25,6 +25,6 @@ class MyClass:
         return self.x - self.y
 
 
-def bar(a: int) -> int:
+def my_func(a: int) -> int:
     """Doubles the input $y=2x$."""
     return 2 * a
