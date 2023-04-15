@@ -1,4 +1,5 @@
 docs/_autosummary
+docs/autoapi
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
