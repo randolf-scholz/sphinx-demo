@@ -21,10 +21,10 @@ class MyClass:
         self.y = y
 
     def compute_difference(self) -> float:
-        """Compute the difference $x-y$."""
+        r"""Compute the difference $x-y∈\mathbb{R}$."""
         return self.x - self.y
 
 
 def my_func(a: int) -> int:
-    """Doubles the input $y=2x$."""
+    r"""Function $f：\mathbb{R}\to \mathbb{R}, x\mapsto 2x$."""
     return 2 * a
