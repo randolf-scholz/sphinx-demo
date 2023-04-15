@@ -59,7 +59,7 @@ extensions = [
     "sphinx.ext.mathjax",
     # 3rd party extensions
     # "autoapi.extension",
-    "sphinx_math_dollar",
+    # "sphinx_math_dollar",
 ]
 # Add any Sphinx extension module names here, as strings. They can be extensions coming with Sphinx
 # (named 'sphinx.ext.*') or your custom ones.
