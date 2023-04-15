@@ -1,0 +1,18 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "sphinx-demo"
+version = "0.1.0"
+description = "Demo Sphinx and bugs"
+authors = ["Randolf Scholz <randolf.scholz@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "sphinx_demo", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+sphinx = ">=6.1.3"
+sphinx-math-dollar = ">=1.2.1"
+sphinx-autoapi = ">=2.1.0"
