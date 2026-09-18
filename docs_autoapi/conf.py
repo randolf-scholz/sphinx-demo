@@ -517,12 +517,10 @@ mathjax_config = {
 
 # region sphinx_math_dollar configuration ------------------------------------------------------------------------------
 
-# https://www.sympy.org/sphinx-math-dollar/#configuration
-# math_dollar_debug = True
-# math_dollar_node_blacklist = NODE_BLACKLIST + (header, pending_xref_condition)
-
-# from sphinx.util.docutils import register_node
+# temporary workaround
 # from sphinx.addnodes import pending_xref_condition
+# from sphinx.util.docutils import register_node
+
 # register_node(pending_xref_condition)
 
 # endregion sphinx_math_dollar configuration ---------------------------------------------------------------------------
