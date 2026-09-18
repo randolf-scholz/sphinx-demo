@@ -59,7 +59,7 @@ extensions = [
     "sphinx.ext.mathjax",
     # 3rd party extensions
     "autoapi.extension",
-    # "sphinx_math_dollar",
+    "sphinx_math_dollar",
 ]
 # Add any Sphinx extension module names here, as strings. They can be extensions coming with Sphinx
 # (named 'sphinx.ext.*') or your custom ones.
@@ -493,10 +493,10 @@ mathjax_options = {}
 # The default is empty {}.
 
 mathjax3_config = {
-  "tex": {
-    "inlineMath": [['\\(', '\\)']],
-    "displayMath": [["\\[", "\\]"]],
-  }
+    "tex": {
+        "inlineMath": [["\\(", "\\)"]],
+        "displayMath": [["\\[", "\\]"]],
+    }
 }
 # The configuration options for MathJax v3 (which is used by default).
 
@@ -505,9 +505,9 @@ mathjax2_config = {}
 # The default is empty {}.
 
 mathjax_config = {
-    'tex2jax': {
-        'inlineMath': [ ["\\(","\\)"] ],
-        'displayMath': [["\\[","\\]"] ],
+    "tex2jax": {
+        "inlineMath": [["\\(", "\\)"]],
+        "displayMath": [["\\[", "\\]"]],
     },
 }
 # Former name of mathjax2_config.
