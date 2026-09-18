@@ -15,6 +15,6 @@ uv pip install -e .
 Clean and build either documentation example using `just`:
 
 ```sh
-just make_autosummary
-just make_apidoc
+uv run just make_autosummary
+uv run just make_apidoc
 ```
